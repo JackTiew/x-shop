@@ -1,73 +1,45 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# x-shop
+Welcome to X-Shop!
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Setup requirement<br>
+Node: v16.15.0<br>
+NPM: 8.5.5<br>
+Nest: 9.1.2<br>
+Apollo Client: 10.1.0<br>
+GraphQL: 16.0.0<br>
+TypeORM: 0.3.9<br>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+Before running this project, PLEASE RUN `npm install` in according directory!!!<br>
+To run x-shop-api(Backend)<br>
+>cd x-shop-api<br>
+>npm run start:dev<br>
+<br>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+There are 4 main modules in backend:<br>
+1. Product<br>
+2. Cart<br>
+3. Order<br>
+4. Stripe<br>
 
-## Installation
-
-```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+The data relationship between them are:<br>
+**ONE** order has **MANY** order item<br>
+**ONE** order item belongs to **ONE** order<br>
+**ONE** order item has **ONE** product<br>
+**ONE** product belongs to **ONE** order item<br>
+**ONE** cart has **MANY** products<br>
+**ONE** product belongs to **ONE** cart<br>
+<br>
+There are 9 GraphQL queries/mutation will be used in frontend:<br>
+#### Queries
+1. getProductListQuery: This query is to get all the product list, with optional param of searchTerm(To search products by name) and orderBy+orderDirection set(To sort products)<br>
+2. getCartCountQuery: This query is use to get currency cart count group by product.<br>
+3. getCartListQuery: This query is to get all the products in a cart.
+<br><br>
+#### Mutations
+1. addToCartMutation: This mutation is use when click on BUY button in product list page.<br>
+2. removeFromCartMutation: This mutation is use to remove the product from cart.<br>
+3. addQuantityMutation: This mutation is use to update selected product quantity by adding 1.<br>
+4. deductQuantityMutation: This mutation is use to update selected product quantity by minus 1.<br>
+5. createStripeMutation: This mutation is use to create stripe payment intent for payment purpose.<br>
+6. createOrderMutation: This mutation is use to insert order and order item.
