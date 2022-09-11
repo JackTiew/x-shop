@@ -1,0 +1,111 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Cart {
+  id: Int!
+  productID: Int!
+  quantity: Int!
+  status: String!
+  count: Int!
+  product: Product!
+}
+
+type Order {
+  id: Int!
+  total: Float!
+  paymentID: String!
+  createdAt: DateTime!
+  orderItem: [OrderItem!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type OrderItem {
+  id: Int!
+  orderID: Int!
+  productID: Int!
+  quantity: Int!
+  getProduct: Product!
+}
+
+type Product {
+  id: Int!
+  name: String!
+  price: Float!
+  image: String
+}
+
+type StripePayment {
+  paymentIntentID: String!
+  clientSecret: String!
+}
+
+type Query {
+  getCartList: [Cart!]!
+  getCartCount: Cart!
+  getProductList(param: SearchProductInput!): [Product!]!
+  getProduct(id: Int!): Product!
+  getOrderList: [Order!]!
+  getOrderItemList: [OrderItem!]!
+}
+
+input SearchProductInput {
+  searchTerm: String
+  orderBy: String
+  orderDirection: String
+}
+
+type Mutation {
+  addToCart(createCartInput: CreateCartInput!): Cart!
+  updateCart(updateCartInput: UpdateCartInput!): Cart!
+  removeFromCart(updateCartInput: UpdateCartInput!): Cart!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  createStripe(createStripeInput: CreateStripeInput!): StripePayment!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+}
+
+input CreateCartInput {
+  productID: Int!
+  status: String!
+}
+
+input UpdateCartInput {
+  productID: Int!
+  quantity: Int
+  status: String
+  increment: Boolean
+  decrement: Boolean
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+  image: String
+}
+
+input UpdateProductInput {
+  id: Int!
+  name: String!
+  price: Float!
+  image: String
+}
+
+input CreateStripeInput {
+  totalPrice: Float!
+}
+
+input CreateOrderInput {
+  total: Float!
+  paymentID: String!
+  orderItem: [CreateOrderItemInput!]!
+}
+
+input CreateOrderItemInput {
+  productID: Int!
+  quantity: Int!
+}

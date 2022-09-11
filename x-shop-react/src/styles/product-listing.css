@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.listing-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    background-color: #F0F1F3;
+}
+
+.listing-container-empty {
+    width: 80%;
+    margin: auto;
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    background-color: white;
+}
+
+.product-container {
+    width: 250px;
+    margin: 20px;
+    padding-top: 20px;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.product-image-box img {
+    width: 150px;
+    height: 200px;
+}
+
+.product-name {
+    font-size: 16px;
+    width: 90%;
+    margin: 20px auto 0 auto;
+    height: 20px;
+}
+
+.product-price {
+    margin: 20px 0 10px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #63E6BE;
+}
+
+.buy-btn-container {
+    background-color: #E3E3E3;
+    border-top: 1px solid #D3D3D3;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.buy-btn {
+    background-color: #63E6BE;
+    color: white;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
+    padding: 10px 20px;
+    width: 150px;
+}
+
+.buy-btn:hover {
+    cursor: pointer;
+}
+
+.empty {
+    font-size: 30px;
+}
+
+.react-select {
+    width: 250px;
+    float: right;
+    margin-right: 160px;
+    margin-bottom: 20px;
+    margin-top: -60px;
+}
+
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    font-size: 1.2rem;
+    gap: 5px;
+}
+
+.pagination .page-num {
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 400;
+}
+
+.pagination .page-num:hover {
+    background-color: #5AB1BB;
+    color: #FFF;
+}
+
+.pagination .active {
+    background-color: #5AB1BB;
+    color: #FFF;
+    padding: 8px 1px;
+    border-radius: 5px;
+}
