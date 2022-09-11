@@ -9,8 +9,10 @@ Nest: 9.1.2<br>
 Apollo Client: 10.1.0<br>
 GraphQL: 16.0.0<br>
 TypeORM: 0.3.9<br>
+Database: PostgreSQL with ElephantSQL.
 
-This is a project contains of frontend and backend.<br>
+**Please note that the connection to database might be slow, so each of the action in e-shop will take a while to perform.**
+<br>This is a project contains of frontend and backend.<br>
 Before running any of the project, PLEASE RUN `npm install` in according directory!!!<br>
 
 To run x-shop-react(Frontend)<br>
@@ -23,6 +25,6 @@ To run x-shop-api(Backend)<br>
 >npm run start:dev<br>
 <br>
 
-**Please note that the connection to database might be slow, so each of the action in e-shop will take a while to perform.**
+
 <br>
-Attached with ER Diagram for data relations reference.
+**Attached with ER Diagram for data relations reference.**
