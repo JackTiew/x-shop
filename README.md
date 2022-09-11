@@ -23,4 +23,6 @@ To run x-shop-api(Backend)<br>
 >npm run start:dev<br>
 <br>
 
+**Please note that the connection to database might be slow, so each of the action in e-shop will take a while to perform.**
+<br>
 Attached with ER Diagram for data relations reference.
