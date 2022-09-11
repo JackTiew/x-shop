@@ -9,8 +9,8 @@ Nest: 9.1.2<br>
 Apollo Client: 10.1.0<br>
 GraphQL: 16.0.0<br>
 TypeORM: 0.3.9<br>
-Database: PostgreSQL with ElephantSQL.
-Frontend port: 3000
+Database: PostgreSQL with ElephantSQL.<br>
+Frontend port: 3000<br>
 Backend port: 4000
 
 **Please note that the connection to database might be slow, so each of the action in e-shop will take a while to perform.**
