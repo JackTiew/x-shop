@@ -10,6 +10,8 @@ Apollo Client: 10.1.0<br>
 GraphQL: 16.0.0<br>
 TypeORM: 0.3.9<br>
 Database: PostgreSQL with ElephantSQL.
+Frontend port: 3000
+Backend port: 4000
 
 **Please note that the connection to database might be slow, so each of the action in e-shop will take a while to perform.**
 <br>This is a project contains of frontend and backend.<br>
