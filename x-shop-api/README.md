@@ -8,7 +8,7 @@ Nest: 9.1.2<br>
 Apollo Client: 10.1.0<br>
 GraphQL: 16.0.0<br>
 TypeORM: 0.3.9<br>
-
+Database: PostgreSQL with ElephantSQL
 
 Before running this project, PLEASE RUN `npm install` in according directory!!!<br>
 To run x-shop-api(Backend)<br>
