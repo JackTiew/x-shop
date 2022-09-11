@@ -5,6 +5,7 @@ Welcome to X-Shop!
 Node: v16.15.0<br>
 NPM: 8.5.5<br>
 React: 18.2.0<br>
+Port: 3000
 
 Before running this project, PLEASE RUN `npm install` in according directory!!!<br>
 To run x-shop-react(Frontend)<br>
