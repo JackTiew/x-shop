@@ -72,6 +72,7 @@ export class CartService {
         return cart;
     }
 
+    //Update all purchase product to paid
     async completeCart(productList: CreateOrderItemInput[]): Promise<void> {
         productList.forEach(
             product=> {
@@ -80,6 +81,7 @@ export class CartService {
         );
     }
 
+    //Remove from cart
     async removeFromCart(product: UpdateCartInput): Promise<Cart> {
         await this.cartRepository.update({productID: product.productID, status: "pending"}, {quantity: 0});
         return product;

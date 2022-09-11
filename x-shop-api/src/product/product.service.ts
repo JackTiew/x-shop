@@ -29,24 +29,13 @@ export class ProductService {
 
     const asc = "ASC";
     const desc = "DESC";
-    // const asc:FindOptionsOrderValue = {direction: "ASC"};
-    // const desc:FindOptionsOrderValue = {direction: "DESC"};
-    // const ignore:FindOptionsOrderValue = {nulls: "FIRST"};
 
-    // let query = {
-    //   where: {
-    //     name: null
-    //   },
-    //   order: {
-    //     searchProduct.orderBy: searchProduct.orderDirection
-    //   }
-    // }    
-
-
+    //If contains search term, filter by name
     if(searchProduct.searchTerm)
     {
         await query.where("name Ilike :name", {name: `%${searchProduct.searchTerm}%`});
     }
+    //If contain orderBy and orderDirection, sort products
     if(searchProduct.orderBy && searchProduct.orderDirection)
     {
         await query.orderBy(searchProduct.orderBy, searchProduct.orderDirection == "ASC" ? asc : desc);

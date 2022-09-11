@@ -20,6 +20,7 @@ export class OrderService {
     private readonly cartService: CartService
   ) {}
 
+  //Creating new order when payment is made
   async createOrder(createOrderInput: CreateOrderInput): Promise<Order> {
     const order = await this.orderRepository.save(createOrderInput);
 
@@ -29,11 +30,14 @@ export class OrderService {
       }
     );
 
+    //Insert into child table
     await this.createOrderItem(createOrderInput.orderItem);
+    //Complete the cart products
     await this.cartService.completeCart(createOrderInput.orderItem);
     return order;
   }
 
+  //Create order item
   async createOrderItem(createOrderItem: CreateOrderItemInput[]): Promise<OrderItem[]> {
     return await this.orderItemRepository.save(createOrderItem);
   }
