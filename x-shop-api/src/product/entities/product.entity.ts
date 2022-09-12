@@ -1,6 +1,6 @@
 import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
-import { Cart } from 'src/cart/entities/cart.entity';
-import { OrderItem } from 'src/order/order-item/entities/order-item.entity';
+import { Cart } from '../../cart/entities/cart.entity';
+import { OrderItem } from '../../order/order-item/entities/order-item.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
@@ -23,8 +23,8 @@ export class Product {
   image: string;
 
   @OneToMany(() => Cart, cart => cart.product)
-  cart: Cart;
+  cart?: Cart;
 
   @OneToMany(() => OrderItem, orderItem => orderItem.product)
-  orderItem: OrderItem;
+  orderItem?: OrderItem;
 }

@@ -6,14 +6,14 @@ export class UpdateCartInput {
     productID: number;
 
     @Field(() => Int, {nullable: true})
-    quantity: number;
+    quantity?: number;
 
     @Field(() => String, {nullable: true})
-    status: string;
+    status?: string;
 
     @Field(() => Boolean, {nullable: true})
-    increment: boolean;
+    increment?: boolean;
 
     @Field(() => Boolean, {nullable: true})
-    decrement: boolean;
+    decrement?: boolean;
 }

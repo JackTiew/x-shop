@@ -5,10 +5,17 @@ import { CartService } from './cart.service';
 describe('CartResolver', () => {
   let resolver: CartResolver;
 
+  const mockCartService = {
+
+  }
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [CartResolver, CartService],
-    }).compile();
+    })
+    .overrideProvider(CartService)
+    .useValue(mockCartService)
+    .compile();
 
     resolver = module.get<CartResolver>(CartResolver);
   });

@@ -1,7 +1,7 @@
 import { Resolver, Query, ResolveField, Parent } from '@nestjs/graphql';
 import { OrderService } from '../order.service';
 import { OrderItem } from './entities/order-item.entity';
-import { Product } from 'src/product/entities/product.entity';
+import { Product } from '../../product/entities/product.entity';
 
 @Resolver(() => OrderItem)
 export class OrderItemResolver {

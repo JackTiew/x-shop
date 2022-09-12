@@ -5,10 +5,17 @@ import { OrderService } from '../order.service';
 describe('OrderResolver', () => {
   let resolver: OrderResolver;
 
+  const orderItemService = {
+    
+  }
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [OrderResolver, OrderService],
-    }).compile();
+    })
+    .overrideProvider(OrderService)
+    .useValue(orderItemService)
+    .compile();
 
     resolver = module.get<OrderResolver>(OrderResolver);
   });

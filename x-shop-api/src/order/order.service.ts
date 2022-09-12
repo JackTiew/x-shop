@@ -5,9 +5,9 @@ import { Repository } from 'typeorm';
 import { CreateOrderInput } from './order-info/dto/create-order.input';
 import { Order } from './order-info/entities/order.entity';
 import { CreateOrderItemInput } from './order-item/dto/create-order-item.input';
-import { Product } from 'src/product/entities/product.entity';
-import { ProductService } from 'src/product/product.service';
-import { CartService } from 'src/cart/cart.service';
+import { Product } from '../product/entities/product.entity';
+import { ProductService } from '../product/product.service';
+import { CartService } from '../cart/cart.service';
 
 @Injectable()
 export class OrderService {
