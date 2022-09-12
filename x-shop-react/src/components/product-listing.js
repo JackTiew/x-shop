@@ -13,7 +13,7 @@ const ProductListing = ({updateCount, setLoader}) => {
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const [selectedPage, setSelectedPage] = useState(0);
-    const itemsPerPage = 4;
+    const itemsPerPage = 12;
 
     const {data, refetch} = useQuery(getProductListQuery, {variables: {searchTerm: null, orderBy: null, orderDirection: null}});
     const [products, setProducts] = useState([]);
