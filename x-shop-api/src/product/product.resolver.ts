@@ -4,6 +4,7 @@ import { Product } from './entities/product.entity';
 import { CreateProductInput } from './dto/create-product.input';
 import { UpdateProductInput } from './dto/update-product.input';
 import { SearchProductInput } from './dto/search-product-input';
+import { ProductListingOutput } from './dto/product-listing.output';
 
 @Resolver(() => Product)
 export class ProductResolver {
@@ -14,8 +15,8 @@ export class ProductResolver {
     return this.productService.createProduct(createProductInput);
   }
 
-  @Query(() => [Product], { name: 'getProductList' })
-  getProductList(@Args('param') searchProduct: SearchProductInput): Promise<Product[]> {
+  @Query(() => ProductListingOutput, { name: 'getProductList' })
+  getProductList(@Args('param') searchProduct: SearchProductInput): Promise<ProductListingOutput> {
     return this.productService.getProductList(searchProduct);
   }
 

@@ -39,6 +39,11 @@ type Product {
   image: String
 }
 
+type ProductListingOutput {
+  productList: [Product!]!
+  pageCount: Int!
+}
+
 type StripePayment {
   paymentIntentID: String!
   clientSecret: String!
@@ -47,7 +52,7 @@ type StripePayment {
 type Query {
   getCartList: [Cart!]!
   getCartCount: Cart!
-  getProductList(param: SearchProductInput!): [Product!]!
+  getProductList(param: SearchProductInput!): ProductListingOutput!
   getProduct(id: Int!): Product!
   getOrderList: [Order!]!
   getOrderItemList: [OrderItem!]!
@@ -57,6 +62,8 @@ input SearchProductInput {
   searchTerm: String
   orderBy: String
   orderDirection: String
+  pageIndex: Int!
+  dataLimit: Int!
 }
 
 type Mutation {

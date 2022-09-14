@@ -1,5 +1,4 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { FindOptionsOrderValue } from 'typeorm';
+import { Field, InputType, Int } from '@nestjs/graphql';
 
 @InputType()
 export class SearchProductInput {
@@ -11,4 +10,10 @@ export class SearchProductInput {
 
     @Field(() => String, {nullable: true})
     orderDirection?: string;
+
+    @Field(() => Int)
+    pageIndex: number;
+
+    @Field(() => Int)
+    dataLimit: number;
 }

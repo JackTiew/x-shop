@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateProductInput } from './dto/create-product.input';
+import { ProductListingOutput } from './dto/product-listing.output';
 import { SearchProductInput } from './dto/search-product-input';
 import { UpdateProductInput } from './dto/update-product.input';
 import { Product } from './entities/product.entity';
@@ -24,7 +25,7 @@ export class ProductService {
   }
 
   //Get product list
-  async getProductList(searchProduct: SearchProductInput): Promise<Product[]> {
+  async getProductList(searchProduct: SearchProductInput): Promise<ProductListingOutput> {
     const query = await this.productRepository.createQueryBuilder("product").orderBy("id","ASC");
 
     const asc = "ASC";
@@ -41,7 +42,19 @@ export class ProductService {
         await query.orderBy(searchProduct.orderBy, searchProduct.orderDirection == "ASC" ? asc : desc);
     }
 
-    return await query.getMany();
+    const pageCount = Math.ceil((await query.getMany()).length / searchProduct.dataLimit);
+    //Offset need to minus 1 from current page number
+    const offSet = ((searchProduct.pageIndex - 1) * searchProduct.dataLimit);
+
+    await query.offset(offSet);
+    await query.limit(searchProduct.dataLimit);
+
+    const productList:ProductListingOutput = {
+      productList: await query.getMany(),
+      pageCount: pageCount
+    }
+
+    return productList;
   }
 
   //Update product

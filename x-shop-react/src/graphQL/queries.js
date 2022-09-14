@@ -5,16 +5,23 @@ export const getProductListQuery = gql`
         $searchTerm: String
         $orderBy: String
         $orderDirection: String
+        $pageIndex: Int!
+        $dataLimit: Int!
     ){
         getProductList(param:{
             searchTerm: $searchTerm
             orderBy: $orderBy
             orderDirection: $orderDirection
+            pageIndex: $pageIndex
+            dataLimit: $dataLimit
         }) {
-            id
-            name
-            price
-            image
+            pageCount
+            productList {
+                id
+                name
+                price
+                image
+            }
         }
     }
 `;

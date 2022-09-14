@@ -11,28 +11,25 @@ import "../styles/product-listing.css";
 const ProductListing = ({updateCount, setLoader}) => {
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
-    const [itemOffset, setItemOffset] = useState(0);
     const [selectedPage, setSelectedPage] = useState(0);
-    const itemsPerPage = 12;
+    const itemsPerPage = 4;
 
-    const {data, refetch} = useQuery(getProductListQuery, {variables: {searchTerm: null, orderBy: null, orderDirection: null}});
+    const {data, refetch} = useQuery(getProductListQuery, {variables: {searchTerm: null, orderBy: null, orderDirection: null, pageIndex: 1, dataLimit: itemsPerPage}});
     const [products, setProducts] = useState([]);
     
     useEffect(() => {
         setLoader(true);
         if(data)
         {
-            setProducts(data.getProductList);
-            const endOffset = itemOffset + itemsPerPage;
-            setCurrentItems(data.getProductList.slice(itemOffset, endOffset));
-            setPageCount(Math.ceil(data.getProductList.length / itemsPerPage));
+            setProducts(data.getProductList.productList);
+            setCurrentItems(data.getProductList.productList);
+            setPageCount(data.getProductList.pageCount);
             setLoader(false);
         }
     }, [data, setLoader, selectedPage]);
     
     const searchProducts = (searchTerm) => {
         refetch({searchTerm: searchTerm});
-        setItemOffset(0);
         setSelectedPage(0);
     }
 
@@ -62,9 +59,10 @@ const ProductListing = ({updateCount, setLoader}) => {
     ]
     
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % products.length;
-        setItemOffset(newOffset);
+        setLoader(true);
+        refetch({pageIndex: event.selected+1});
         setSelectedPage(event.selected);
+        setLoader(false);
     };
 
     return (
